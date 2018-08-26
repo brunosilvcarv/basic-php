@@ -1,2 +1,2 @@
 # basic-php
-Sisteminha básico em php.
+Sistema simples usando php. 
