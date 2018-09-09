@@ -1,27 +1,28 @@
 <?php
 require_once("cabecalho.php");
 
+$tipoProduto = $_POST['tipoProduto'];
+$produto_id = $_POST['id'];
+$categoria_id = $_POST['categoria_id'];
 
-$categoria = new Categoria();
-$categoria->setId($_POST['categoria_id']);
+$factory = new ProdutoFactory();
+$produto = $factory->criaPor($tipoProduto, $_POST);
+$produto->atualizaBaseadoEm($_POST);
 
-$nome = $_POST['nome'];
-$preco = $_POST['preco'];
-$descricao = $_POST['descricao'];
+$produto->setId($produto_id);
+$produto->getCategoria()->setId($categoria_id);
 
 if(array_key_exists('usado', $_POST)) {
-	$usado = "true";
+	$produto->setUsado("true");
 } else {
-	$usado = "false";
+	$produto->setUsado("false");
 }
 
-$produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
-$produto->setId($_POST['id']);
-$produtoDAO = new ProdutoDAO($conexao);
+$produtoDao = new ProdutoDao($conexao);
 
-if($produtoDAO->alteraProduto($produto)) { ?>
+if($produtoDao->alteraProduto($produto)) { ?>
 	<p class="text-success">O produto <?= $produto->getNome() ?>, <?= $produto->getPreco() ?> foi alterado.</p>
-<?php
+<?php 
 } else {
 	$msg = mysqli_error($conexao);
 ?>
