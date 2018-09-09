@@ -1,11 +1,11 @@
 <?php
 require_once("cabecalho.php");
-require_once("banco-produto.php");
 ?>
 
 <table class="table table-striped table-bordered">
 	<?php
-	$produtos = listaProdutos($conexao);
+	$produtoDAO = new ProdutoDAO($conexao);
+	$produtos = $produtoDAO->listaProdutos();
 	foreach($produtos as $produto) :
 	?>
 		<tr>
@@ -15,7 +15,7 @@ require_once("banco-produto.php");
 			<td><?= substr($produto->getDescricao(), 0, 40) ?></td>
 			<td><?= $produto->getCategoria()->getNome() ?></td>
 			<td>
-				<a class="btn btn-primary" 
+				<a class="btn btn-primary"
 					href="produto-altera-formulario.php?id=<?=$produto->getId()?>">
 					alterar
 				</a>
@@ -29,7 +29,7 @@ require_once("banco-produto.php");
 		</tr>
 	<?php
 	endforeach
-	?>	
+	?>
 </table>
 
 <?php include("rodape.php"); ?>
