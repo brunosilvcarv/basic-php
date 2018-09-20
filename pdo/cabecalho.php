@@ -20,12 +20,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/index.php">Controle de Estoque</a>
+            <a class="navbar-brand" href="index.php">Controle de Estoque</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/categorias.php">Categorias</a></li>
-                <li><a href="/produtos.php">Produtos</a></li>
+                <li><a href="categorias.php">Categorias</a></li>
+                <li><a href="produtos.php">Produtos</a></li>
             </ul>
         </div><!--/.navbar-collapse -->
     </div>

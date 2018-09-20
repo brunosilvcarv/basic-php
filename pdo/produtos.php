@@ -32,7 +32,7 @@
                     <td>R$ 80,55</td>
                     <td>2</td>
                     <td>Livros</td>
-                    <td><a href="/produtos-editar.php" class="btn btn-info">Editar</a></td>
+                    <td><a href="produtos-editar.php" class="btn btn-info">Editar</a></td>
                     <td><a href="#" class="btn btn-danger">Excluir</a></td>
                 </tr>
             </tbody>
