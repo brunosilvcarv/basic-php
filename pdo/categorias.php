@@ -2,6 +2,10 @@
 <?php
     $categoria = new Categoria();
     $lista = $categoria->listar();
+
+    /*echo '<pre>';
+    print_r($lista);
+    echo '</pre>';*/
 ?>
 <?php require_once 'cabecalho.php' ?>
 <div class="row">
