@@ -1,4 +1,4 @@
-<?php require_once('classes/Categoria.php'); ?>
+<?php require_once('global.php'); ?>
 
 <?php
     $id = $_POST['id'];

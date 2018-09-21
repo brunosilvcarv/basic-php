@@ -1,5 +1,4 @@
 <?php
-  require_once('classes/Conexao.php');
 
 class Categoria {
 
