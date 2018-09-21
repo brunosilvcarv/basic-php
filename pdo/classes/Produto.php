@@ -19,4 +19,10 @@ class Produto {
     $lista = $resultado->fetchAll(); //pega o retorno do PDO statement
     return $lista;
   }
+
+  public function inserir() {
+    $query = "insert into produtos (nome, preco, quantidade, categoria_id) values ('" . $this->nome ."', " . $this->preco . ", " . $this->quantidade . ", " . $this->categoria_id .")";
+    $conexao = Conexao::getConexao();
+    $conexao->exec($query);
+    }
 }

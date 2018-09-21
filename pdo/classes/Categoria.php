@@ -12,9 +12,9 @@ class Categoria {
       }
     }
 
-    public function listar() {
+    public static function listar() {
         //throw new Exception('Erro ao listar categorias.');
-        $query = "SELECT id, nome FROM categorias";
+        $query = "SELECT id, nome FROM categorias order by nome";
         $conexao = Conexao::getConexao();
         $resultado = $conexao->query($query);
         $lista = $resultado->fetchAll();
