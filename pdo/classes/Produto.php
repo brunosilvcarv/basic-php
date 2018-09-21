@@ -21,8 +21,14 @@ class Produto {
   }
 
   public function inserir() {
-    $query = "insert into produtos (nome, preco, quantidade, categoria_id) values ('" . $this->nome ."', " . $this->preco . ", " . $this->quantidade . ", " . $this->categoria_id .")";
+    $query = "insert into produtos (nome, preco, quantidade, categoria_id) values (:nome, :preco, :quantidade, :categoria_id)";
     $conexao = Conexao::getConexao();
-    $conexao->exec($query);
-    }
+    $stmt = $conexao->prepare($query); // retorna o statement preparado para execução(não executado), diferente do exec();
+    $stmt->bindValue(':nome', $this->nome);
+    $stmt->bindValue(':preco', $this->preco);
+    $stmt->bindValue(':quantidade', $this->quantidade);
+    $stmt->bindValue(':categoria_id', $this->categoria_id);
+    //executa o Statement
+    $stmt->execute();
+  }
 }
