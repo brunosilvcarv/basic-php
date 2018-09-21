@@ -1,4 +1,6 @@
-CREATE DATABASE estoque;
+CREATE DATABASE estoque
+DEFAULT COLLATE UTF8_GENERAL_CI
+DEFAULT CHARACTER SET UTF8;
 
 use estoque;
 
@@ -7,7 +9,7 @@ CREATE TABLE categorias
   id INT NOT NULL AUTO_INCREMENT,
   nome VARCHAR(50) NOT NULL,
   PRIMARY KEY(id)
-);
+)EGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 CREATE TABLE produtos
 (
@@ -17,7 +19,7 @@ CREATE TABLE produtos
   quantidade INT NOT NULL,
   categoria_id INT NOT NULL,
   PRIMARY KEY(id)
-);
+)EGINE=InnoDB DEFAULT CHARSET=UTF8;
 
 ALTER TABLE produtos ADD CONSTRAINT fk_categorias FOREIGN KEY (categoria_id) REFERENCES categorias(id);
 
