@@ -1,6 +1,7 @@
 <?php require_once('global.php'); ?>
 
 <?php
+  try {
     $id = $_POST['id'];
     $nome = $_POST['nome'];
     /*
@@ -14,3 +15,6 @@
     $categoria->atualizar();
 
     header('Location: categorias.php');
+    } catch(Exception $ex) {
+      Erro::trataErro($ex);
+    }

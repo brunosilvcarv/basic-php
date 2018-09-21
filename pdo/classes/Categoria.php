@@ -13,6 +13,7 @@ class Categoria {
     }
 
     public function listar() {
+        //throw new Exception('Erro ao listar categorias.');
         $query = "SELECT id, nome FROM categorias";
         $conexao = Conexao::getConexao();
         $resultado = $conexao->query($query);
@@ -21,6 +22,7 @@ class Categoria {
     }
 
     public function carregar() {
+      //throw new Exception('Erro ao listar categorias.');
       $query = "select id, nome from categorias where id =" . $this->id;
       $conexao = Conexao::getConexao();
       // exec()   ----> inserts, updates e deletes
