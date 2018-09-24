@@ -4,6 +4,7 @@ class Categoria {
 
     public $id;
     public $nome;
+    public $produtos;
 
     public function __construct($id = false) {
       if($id) {
@@ -57,5 +58,9 @@ class Categoria {
       $stmt = $conexao->prepare($query);
       $stmt->bindValue(':id', $this->id);
       $stmt->execute();
+    }
+
+    public function carregarProdutos() {
+      $this->produtos = Produto::listarPorCategoria($this->id);
     }
 }

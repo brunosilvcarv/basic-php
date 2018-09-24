@@ -40,6 +40,16 @@ class Produto {
     return $lista;
   }
 
+  public static function listarPorCategoria($categoria_id) {
+     $query = "select id, nome, preco, quantidade from produtos where categoria_id = :categoria_id";
+     $conexao = Conexao::getConexao();
+     $stmt = $conexao->prepare($query);
+     $stmt->bindValue(':categoria_id', $categoria_id);
+     $stmt->execute();
+     //como ele retornará mais de uma linha...
+     return $stmt->fetchAll();
+  }
+
   public function inserir() {
     $query = "insert into produtos (nome, preco, quantidade, categoria_id) values (:nome, :preco, :quantidade, :categoria_id)";
     $conexao = Conexao::getConexao();
