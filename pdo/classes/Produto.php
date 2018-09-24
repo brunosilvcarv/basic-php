@@ -10,6 +10,26 @@ class Produto {
   public $quantidade;
   public $categoria_id;
 
+  public function __construct($id = false) {
+    if ($id) {
+      $this->id = $id;
+      $this->carregar();
+    }
+  }
+
+  public function carregar() {
+    $query = "select nome, preco, quantidade, categoria_id from produtos where id = :id";
+    $conexao = Conexao::getConexao();
+    $stmt = $conexao->prepare($query);
+    $stmt->bindValue(':id', $this->id);
+    $stmt->execute();
+    $linha = $stmt->fetch();
+    $this->nome = $linha['nome'];
+    $this->preco = $linha['preco'];
+    $this->quantidade = $linha['quantidade'];
+    $this->categoria_id = $linha['categoria_id'];
+  }
+
   public static function listar() {
     $query = "select p.id, p.nome, preco, quantidade, categoria_id, c.nome as categoria_nome
               from produtos p
@@ -29,6 +49,27 @@ class Produto {
     $stmt->bindValue(':quantidade', $this->quantidade);
     $stmt->bindValue(':categoria_id', $this->categoria_id);
     //executa o Statement
+    $stmt->execute();
+  }
+
+  public function atualizar() {
+    $query = "update produtos set nome =  :nome, preco = :preco, quantidade = :quantidade, categoria_id = :categoria_id
+          	  where id = :id";
+    $conexao = Conexao::getConexao();
+    $stmt = $conexao->prepare($query);
+    $stmt->bindValue(':nome', $this->nome);
+    $stmt->bindValue(':preco', $this->preco);
+    $stmt->bindValue(':quantidade', $this->quantidade);
+    $stmt->bindValue(':categoria_id', $this->categoria_id);
+    $stmt->bindValue(':id', $this->id);
+    $stmt->execute();
+  }
+
+  public function excluir() {
+    $query = "delete from produtos where id = :id";
+    $conexao = Conexao::getConexao();
+    $stmt = $conexao->prepare($query);
+    $stmt->bindValue(':id', $this->id);
     $stmt->execute();
   }
 }
